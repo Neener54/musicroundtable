@@ -4,13 +4,16 @@
   "description": "A way to share music with your co-workers and dj like a pro",
   "main": "index.js",
   "scripts": {
+    "dev": "node server.js",
     "test": "jest"
   },
   "author": "Michael Archibald",
   "license": "MIT",
   "dependencies": {
     "ampersand-state": "^4.5.6",
+    "bcrypt": "^0.8.3",
     "hapi": "^8.6.0",
+    "hapi-auth-basic": "^2.0.0",
     "moonboots": "^4.0.1",
     "react": "^0.13.3",
     "react-router": "^0.13.3"
