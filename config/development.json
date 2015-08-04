@@ -1,0 +1,18 @@
+{
+  "apps": [{
+    "name": "node-app",
+    "cwd": "/srv/node-app/current",
+    "args": ["--toto=heya coco", "-d", "1"],
+    "script": "bin/app.js",
+    "node_args": ["--harmony", " --max-stack-size=102400000"],
+    "out_file": "log/development.log",
+    "pid_file": "pids/node-music-round-table.pid",
+    "max_restarts": 10,
+    "max_memory_restart": "1M",
+    "watch": true,
+    "autorestart": true,
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }]
+}

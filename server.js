@@ -2,10 +2,9 @@
 import bcrypt from 'bcrypt'
 import Hapi from 'hapi'
 import Basic from 'hapi-auth-basic'
-import hapireact from 'hapi-react'
+import hapireact from 'hapi-react-views'
 let server
-let engine = hapireact()
-server = new Hapi.Server()
+server = new Hapi.Server({debug: { request: ['error'] }})
 server.connection({port: 5000})
 let users = {
   micharch54: {
@@ -30,13 +29,14 @@ let validate = function (username, password, callback) {
 let viewOpts = {
   defaultExtension: 'js',
   engines: {
-    js: engine
+    js: hapireact
   },
   relativeTo: __dirname,
-  path: '.views',
+  path: './app/views',
   layout: true,
-  layoutPath: '.views/layout'
+  layoutPath: './app/layouts'
 }
+
 server.views(viewOpts)
 
 server.register(Basic, function (err) {
@@ -47,11 +47,16 @@ server.register(Basic, function (err) {
     path: '/',
     config: {
       auth: 'simple',
-      handler: function (request, reply) {
-        reply('hello, ' + request.auth.credentials.name)
+      handler (request, reply) {
+        reply.view('index', {
+          name: request.auth.credentials.name,
+          title: 'Main Page',
+          description: 'Main Page'
+        })
       }
     }
   })
+
   server.start(function () {
     console.log('server running at: ' + server.info.uri)
   })
