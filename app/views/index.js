@@ -1,4 +1,4 @@
-import React from 'react'
+import React  from 'react'
 
 export default React.createClass({
   displayName: 'IndexPage',
@@ -8,6 +8,11 @@ export default React.createClass({
   },
 
   render () {
-    return <div> Hello {this.props.name}</div>
+    return (
+      <div>
+        Hello {this.props.name}
+        <h1>This is how we do it</h1>
+      </div>
+      )
   }
 })
